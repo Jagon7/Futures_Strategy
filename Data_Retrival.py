@@ -2,10 +2,10 @@ import pandas as pd
 import os
 
 # 自行輸入要拼接檔案所在的資料夾完整路徑，不可包含中文
-Folder_Path = r'/Users/jagon/Desktop/Finance Coding/Futures_Strategy/RawData'
+Folder_Path = r'YOUR FOLDER PATH'
 
 #拚接後檔案保存的資料夾路徑
-SaveFile_Path =  r'/Users/jagon/Desktop/Finance Coding/Futures_Strategy/Data'
+SaveFile_Path =  r'YOUR FOLDER PATH'
 
 #拚接後要保存的檔案名
 SaveFile_Name = r'taiwanfuture_all_TX.csv'
