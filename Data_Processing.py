@@ -45,14 +45,3 @@ df_after_hours.columns = [col[1] for col in df_after_hours.columns.values]
 na_cols = ['open', 'high', 'low', 'close']
 df_in_hours[na_cols] = df_in_hours[na_cols].fillna(method='ffill', inplace=False)
 df_after_hours[na_cols] = df_after_hours[na_cols].fillna(method='ffill', inplace=False)
-
-
-# for date in date_list:
-
-#     daily_data = in_hours.loc[in_hours['Date'] == date]
-#     daily_data = daily_data.sort_values(by=['Time']).reset_index(drop=True)
-#     daily_data['MA1'] = df['values'].resample('1Min').sum()
-
-
-
-#     break
