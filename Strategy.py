@@ -37,41 +37,15 @@ after_hours = (data.index.time >= after_hours_start_time) | (data.index.time <= 
 df_in_hours = data[in_hours]
 df_after_hours = data[after_hours]
 
-# Check for NaN values before filling
-print("Before filling NaNs:")
-print(df_after_hours[df_after_hours.index == pd.to_datetime('2023-11-13 15:27:00')])
-
-# Convert the specified columns to numeric type
-numeric_columns = ['open', 'high', 'low', 'close']
-df_after_hours['Price'][numeric_columns] = df_after_hours['Price'][numeric_columns].apply(pd.to_numeric)
+# Convert multi-index to single index
+df_in_hours.columns = [col[1] for col in df_in_hours.columns.values]
+df_after_hours.columns = [col[1] for col in df_after_hours.columns.values]
 
 # Fill NaN values using forward-fill
-df_in_hours['Price'][numeric_columns].fillna(method='ffill', inplace=True)
-df_after_hours['Price'][numeric_columns].fillna(method='ffill', inplace=True)
+na_cols = ['open', 'high', 'low', 'close']
+df_in_hours[na_cols] = df_in_hours[na_cols].fillna(method='ffill', inplace=False)
+df_after_hours[na_cols] = df_after_hours[na_cols].fillna(method='ffill', inplace=False)
 
-# Check the DataFrame after filling NaNs
-print("\nAfter filling NaNs:")
-print(df_after_hours[df_after_hours.index == pd.to_datetime('2023-11-13 15:27:00')])
-
-
-
-# fill open, high, low, close price with the previous prices if volume is 0
-# df_in_hours['Price']['open'].fillna(method='ffill', inplace=True)
-# df_in_hours['Price']['high'].fillna(method='ffill', inplace=True)
-# df_in_hours['Price']['low'].fillna(method='ffill', inplace=True)
-# df_in_hours['Price']['close'].fillna(method='ffill', inplace=True)
-# df_after_hours['Price']['open'].fillna(method='ffill', inplace=True)
-# df_after_hours['Price']['high'].fillna(method='ffill', inplace=True)
-# df_after_hours['Price']['low'].fillna(method='ffill', inplace=True)
-# df_after_hours['Price']['close'].fillna(method='ffill', inplace=True)
-
-
-# print(df_after_hours[df_after_hours.index == pd.to_datetime('2023-11-13 15:27:00')])
-# save data
-# df_in_hours.to_csv('Data/in_hours.csv')
-# df_after_hours.to_csv('Data/after_hours.csv')
-
-# date_list = list(in_hours.index.unique())
 
 # for date in date_list:
 
